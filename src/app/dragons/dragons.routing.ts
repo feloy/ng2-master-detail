@@ -4,25 +4,28 @@ import { DragonsCenterComponent } from './dragons-center/dragons-center.componen
 import { DragonsListComponent } from './dragons-list/dragons-list.component';
 import { DragonsDetailsComponent } from './dragons-details/dragons-details.component';
 
+import { DragonsListResolveService } from './dragons-list-resolve.service';
+import { DragonsDetailsResolveService } from './dragons-details-resolve.service';
+
 const dragonsRoutes: Routes = [
   {
     path: '', component: DragonsCenterComponent,
     children: [
-      { path: '', component: DragonsListComponent }
+      { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } }
     ]
   },
   {
     path: 'new', component: DragonsCenterComponent,
     children: [
-      { path: '', component: DragonsListComponent },
-      { path: '', component: DragonsDetailsComponent, outlet: 'details'}
+      { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } },
+      { path: '', component: DragonsDetailsComponent, outlet: 'details' }
     ]
   },
   {
     path: ':id', component: DragonsCenterComponent,
     children: [
-      { path: '', component: DragonsListComponent },
-      { path: '', component: DragonsDetailsComponent, outlet: 'details'}
+      { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } },
+      { path: '', component: DragonsDetailsComponent, outlet: 'details', resolve: { detail: DragonsDetailsResolveService } }
     ]
   }
 ];
