@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { Dragon, DragonsService } from './dragons.service';
 
 @Injectable()
-export class DragonsListResolveService implements Resolve<any> {
+export class DragonsListResolveService implements Resolve<Dragon[]> {
 
-  constructor() { }
+  constructor(private service: DragonsService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    console.log('resolve list');
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Dragon[] {
+    return this.service.dragonsList();
   }
 }
