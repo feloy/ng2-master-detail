@@ -4,6 +4,8 @@ import { MaterialModule } from '@angular/material';
 
 import { DragonsCenterComponent } from './dragons-center/dragons-center.component';
 import { dragonsRouting } from './dragons.routing';
+import { DragonsListComponent } from './dragons-list/dragons-list.component';
+import { DragonsDetailsComponent } from './dragons-details/dragons-details.component';
 
 @NgModule({
   imports: [
@@ -11,7 +13,7 @@ import { dragonsRouting } from './dragons.routing';
     MaterialModule,
     dragonsRouting
   ],
-  declarations: [ DragonsCenterComponent],
+  declarations: [ DragonsCenterComponent, DragonsListComponent, DragonsDetailsComponent],
   providers: [ ]
 })
 export class DragonsModule {
