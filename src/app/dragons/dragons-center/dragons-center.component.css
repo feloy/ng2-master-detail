@@ -1,0 +1,7 @@
+[md-fab] {
+  position: absolute;
+  right: 3%;
+  top: 96px;
+  z-index: 1;
+}
+[md-fab].active { display: none; }
