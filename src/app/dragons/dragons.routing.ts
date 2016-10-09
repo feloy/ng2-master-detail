@@ -25,7 +25,7 @@ const dragonsRoutes: Routes = [
     path: ':id', component: DragonsCenterComponent,
     children: [
       { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } },
-      { path: '', component: DragonsDetailsComponent, outlet: 'details', resolve: { detail: DragonsDetailsResolveService } }
+      { path: '', component: DragonsDetailsComponent, outlet: 'details', resolve: { details: DragonsDetailsResolveService } }
     ]
   }
 ];
