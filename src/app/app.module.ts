@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
 
+import { CanDeactivateFormGuardService } from './can-deactivate-form-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     MaterialModule.forRoot(),
     routing
   ],
-  providers: [],
+  providers: [CanDeactivateFormGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
