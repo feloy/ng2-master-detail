@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DragonsCenterComponent } from './dragons-center/dragons-center.component';
 import { dragonsRouting } from './dragons.routing';
@@ -16,6 +17,8 @@ import { DragonsService } from './dragons.service';
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     dragonsRouting
   ],
   declarations: [ DragonsCenterComponent, DragonsListComponent, DragonsDetailsComponent],

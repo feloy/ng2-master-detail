@@ -1,5 +1,15 @@
 <md-card class="app-card-content">
-  <md-card-title *ngIf="details">Dragon #{{details.id}}</md-card-title>
-  <md-card-title *ngIf="!details">New Dragon</md-card-title>
-  <md-card-content>{{details?.name}}</md-card-content>
+  <md-card-title *ngIf="id">Dragon #{{id}}</md-card-title>
+  <md-card-title *ngIf="!id">New Dragon</md-card-title>
+  <md-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <md-input placeholder="name" formControlName="name"></md-input>
+    </form>
+  </md-card-content>
+  <md-card-actions align="end">
+    <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
+    <button md-button type="button" (click)="doReset()" [disabled]="form.pristine">Reset</button>
+    <button md-button type="button" (click)="doCancel()">Cancel</button>
+    <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine">Save</button>
+  </md-card-actions>
 </md-card>

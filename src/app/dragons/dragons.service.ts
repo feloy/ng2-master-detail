@@ -27,4 +27,8 @@ export class DragonsService {
     return list.length ? list[0] : null;
   }
 
+  dragonDelete(id: number) {
+    this.dragons = this.dragons.filter(d => d.id !== id);
+  }
+
 }
