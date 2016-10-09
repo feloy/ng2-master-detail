@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+body {  
+  margin: 0;  
+  font-family: 'Roboto', sans-serif;
+}
+
+* { 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+md-sidenav { width: 240px; }
+
+.app-toolbar { position: fixed; z-index: 2; box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3); }
+
+.app-belowtoolbar { margin-top: 64px; }
+
+.secondary { color: rgba(0,0,0,0.54); }
