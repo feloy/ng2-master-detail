@@ -10,6 +10,8 @@ import { DragonsDetailsComponent } from './dragons-details/dragons-details.compo
 import { DragonsListResolveService } from './dragons-list-resolve.service';
 import { DragonsDetailsResolveService } from './dragons-details-resolve.service';
 
+import { DragonsService } from './dragons.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,7 @@ import { DragonsDetailsResolveService } from './dragons-details-resolve.service'
     dragonsRouting
   ],
   declarations: [ DragonsCenterComponent, DragonsListComponent, DragonsDetailsComponent],
-  providers: [ DragonsListResolveService, DragonsDetailsResolveService ]
+  providers: [ DragonsListResolveService, DragonsDetailsResolveService, DragonsService ]
 })
 export class DragonsModule {
 }
