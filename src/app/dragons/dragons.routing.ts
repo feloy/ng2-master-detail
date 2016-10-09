@@ -6,6 +6,7 @@ import { DragonsDetailsComponent } from './dragons-details/dragons-details.compo
 
 import { DragonsListResolveService } from './dragons-list-resolve.service';
 import { DragonsDetailsResolveService } from './dragons-details-resolve.service';
+import { CanDeactivateFormGuardService } from '../can-deactivate-form-guard.service';
 
 const dragonsRoutes: Routes = [
   {
@@ -17,15 +18,33 @@ const dragonsRoutes: Routes = [
   {
     path: 'new', component: DragonsCenterComponent,
     children: [
-      { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } },
-      { path: '', component: DragonsDetailsComponent, outlet: 'details' }
+      {
+        path: '',
+        component: DragonsListComponent,
+        resolve: { list: DragonsListResolveService }
+      },
+      {
+        path: '',
+        component: DragonsDetailsComponent,
+        outlet: 'details'
+      }
     ]
   },
   {
     path: ':id', component: DragonsCenterComponent,
     children: [
-      { path: '', component: DragonsListComponent, resolve: { list: DragonsListResolveService } },
-      { path: '', component: DragonsDetailsComponent, outlet: 'details', resolve: { details: DragonsDetailsResolveService } }
+      {
+        path: '',
+        component: DragonsListComponent,
+        resolve: { list: DragonsListResolveService }
+      },
+      {
+        path: '',
+        component: DragonsDetailsComponent,
+        outlet: 'details',
+        resolve: { details: DragonsDetailsResolveService },
+        canDeactivate: [ CanDeactivateFormGuardService ]
+      }
     ]
   }
 ];
