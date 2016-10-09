@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Dragon } from '../dragons.service';
 
 @Component({
   selector: 'app-dragons-details',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DragonsDetailsComponent implements OnInit {
 
-  constructor() { }
+  details: Dragon = null;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.forEach((data: { details: Dragon }) => {
+      if ('details' in data) {
+        this.details = data.details;
+      }
+    });
   }
 
 }
