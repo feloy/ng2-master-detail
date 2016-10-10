@@ -2,15 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/pluck';
+
 import { Dragon, DragonsService } from '../dragons.service';
+import { ComponentDeactivable } from '../../can-deactivate-guard.service';
 
 @Component({
   selector: 'app-dragons-details',
   templateUrl: './dragons-details.component.html',
   styleUrls: ['./dragons-details.component.css']
 })
-export class DragonsDetailsComponent implements OnInit {
+export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
 
+  details: Observable<Dragon>;
   id: number = null;
   initialdata: Dragon = null;
 
@@ -21,15 +26,11 @@ export class DragonsDetailsComponent implements OnInit {
     public router: Router, private service: DragonsService) { }
 
   ngOnInit() {
-    this.route.data.forEach((data: { details: Dragon }) => {
-      if ('details' in data) {
-        this.id = data.details.id;
-        this.createForm(data.details);
-      } else {
-        this.id = null;
-        this.createForm(null);
-      }
-    });
+    this.route.data.pluck<Dragon>('details')
+      .subscribe(d => {
+        this.id = d ? d.id : null;
+        this.createForm(d);
+      });
   }
 
   private createForm(data: Dragon) {
@@ -65,10 +66,10 @@ export class DragonsDetailsComponent implements OnInit {
     if (this.id) {
       this.service.dragonUpdate(this.id, this.nameCtrl.value);
     } else {
-      this.service.dragonAdd(this.nameCtrl.value);
+      this.id = this.service.dragonAdd(this.nameCtrl.value);
     }
     this.form.reset();
-    this.router.navigate(['/dragons']);
+    this.router.navigate(['/dragons', { editid: this.id }]);
   }
 
   canDeactivate() {

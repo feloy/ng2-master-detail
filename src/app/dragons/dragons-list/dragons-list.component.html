@@ -1,7 +1,7 @@
 <md-card class="app-card-content">
   <md-card-content>
     <md-nav-list>
-      <md-list-item *ngFor="let dragon of list" routerLinkActive="active" [routerLink]="[ '/dragons', dragon.id ]">
+      <md-list-item *ngFor="let dragon of list | async" [class.edited]="dragon.id == (editid | async)" routerLinkActive="active" [routerLink]="[ '/dragons', dragon.id ]">
         <h3 md-line>{{dragon.name}}</h3>
       </md-list-item>
     </md-nav-list>

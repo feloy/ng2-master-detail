@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Dragon } from '../dragons.service';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/pluck';
+
 @Component({
   selector: 'app-dragons-list',
   templateUrl: './dragons-list.component.html',
@@ -10,16 +13,13 @@ import { Dragon } from '../dragons.service';
 })
 export class DragonsListComponent implements OnInit {
 
-  list: Dragon[] = [];
+  list: Observable<Dragon[]>;
+  private editid: Observable<number>;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.data.forEach((data: { list: Dragon[] }) => {
-      if ('list' in data) {
-        this.list = data.list;
-      }
-    });
+    this.list = this.route.data.pluck<Dragon[]>('list');
+    this.editid = this.route.params.pluck<number>('editid');
   }
-
 }

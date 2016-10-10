@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
 
-import { CanDeactivateFormGuardService } from './can-deactivate-form-guard.service';
+import { CanDeactivateFormGuardService } from './can-deactivate-guard.service';
 
 @NgModule({
   declarations: [

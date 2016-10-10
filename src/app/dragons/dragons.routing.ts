@@ -6,7 +6,7 @@ import { DragonsDetailsComponent } from './dragons-details/dragons-details.compo
 
 import { DragonsListResolveService } from './dragons-list-resolve.service';
 import { DragonsDetailsResolveService } from './dragons-details-resolve.service';
-import { CanDeactivateFormGuardService } from '../can-deactivate-form-guard.service';
+import { CanDeactivateFormGuardService } from '../can-deactivate-guard.service';
 
 const dragonsRoutes: Routes = [
   {
