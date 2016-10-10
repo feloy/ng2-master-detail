@@ -62,7 +62,13 @@ export class DragonsDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.id) {
+      this.service.dragonUpdate(this.id, this.nameCtrl.value);
+    } else {
+      this.service.dragonAdd(this.nameCtrl.value);
+    }
+    this.form.reset();
+    this.router.navigate(['/dragons']);
   }
 
   canDeactivate() {

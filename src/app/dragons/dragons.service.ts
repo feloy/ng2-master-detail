@@ -31,4 +31,15 @@ export class DragonsService {
     this.dragons = this.dragons.filter(d => d.id !== id);
   }
 
+  dragonAdd(name: string) {
+    let newId = 1 + this.dragons.map(d => d.id).reduce((a, b) => Math.max(a, b));
+    this.dragons.push({ id: newId, name: name} as Dragon);
+  }
+
+  dragonUpdate(id: number, name: string) {
+    let dragons: Dragon[] = this.dragons.filter(d => d.id === id);
+    if (dragons.length) {
+      dragons[0].name = name;
+    }
+  }
 }
