@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
@@ -14,6 +15,8 @@ import { ComponentDeactivable } from '../../can-deactivate-guard.service';
   styleUrls: ['./dragons-details.component.css']
 })
 export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
+
+  @ViewChild(MdInput) focus: MdInput;
 
   details: Observable<Dragon>;
   id: number = null;
@@ -30,6 +33,7 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
       .subscribe(d => {
         this.id = d ? d.id : null;
         this.createForm(d);
+        this.focus.focus();
       });
   }
 

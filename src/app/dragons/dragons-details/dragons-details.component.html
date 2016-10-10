@@ -3,7 +3,7 @@
   <md-card-title *ngIf="!id">New Dragon</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-      <md-input placeholder="name" formControlName="name"></md-input>
+      <md-input #focus placeholder="name" formControlName="name"></md-input>
     </md-card-content>
     <md-card-actions align="end">
       <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
