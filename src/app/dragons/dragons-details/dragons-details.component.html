@@ -5,6 +5,13 @@
     <md-card-content>
       <md-input #getfocus placeholder="name" formControlName="name"></md-input>
       <md-checkbox style="display: block" [indeterminate]="reallyThirstyCtrl.value == null" formControlName="reallyThirsty">Really Thirsty</md-checkbox>
+      <!--md-radio-group formControlName="preferredDrink">
+        <md-radio-button value="water">Water</md-radio-button>
+        <md-radio-button value="fuel">Fuel</md-radio-button>
+      </md-radio-group-->
+      <input type="radio" formControlName="preferredDrink" value="water" id="preferredDrinkWater"><label for="preferredDrinkWater">Water</label>
+      <input type="radio" formControlName="preferredDrink" value="fuel" id="preferredDrinkFuel"><label for="preferredDrinkFuel">Fuel</label>
+
     </md-card-content>
     <md-card-actions align="end">
       <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>

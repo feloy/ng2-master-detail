@@ -25,6 +25,7 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
   form: FormGroup;
   nameCtrl: FormControl;
   reallyThirstyCtrl: FormControl;
+  preferredDrinkCtrl: FormControl;
   pleaseSave: boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
@@ -48,9 +49,11 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
     this.initialdata = data;
     this.nameCtrl = new FormControl(data ? data.name : '', Validators.required);
     this.reallyThirstyCtrl = new FormControl(data ? data.reallyThirsty : null, Validators.required);
+    this.preferredDrinkCtrl = new FormControl(data ? data.preferredDrink : 'water');
     this.form = this.fb.group({
       name: this.nameCtrl,
-      reallyThirsty: this.reallyThirstyCtrl
+      reallyThirsty: this.reallyThirstyCtrl,
+      preferredDrink: this.preferredDrinkCtrl
     });
   }
 
@@ -58,6 +61,7 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
     this.initialdata = data;
     this.nameCtrl.setValue(data ? data.name : '');
     this.reallyThirstyCtrl.setValue(data ? data.reallyThirsty : null, Validators.required);
+    this.preferredDrinkCtrl.setValue(data ? data.preferredDrink : 'water');
   }
 
   doDelete() {

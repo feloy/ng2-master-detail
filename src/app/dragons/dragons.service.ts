@@ -4,16 +4,17 @@ export interface Dragon {
   id: number;
   name: string;
   reallyThirsty: boolean;
+  preferredDrink: 'water' | 'fuel';
 }
 
 @Injectable()
 export class DragonsService {
 
   private dragons: Dragon[] = [
-    { id: 1, name: 'Dragon 1', reallyThirsty: true },
-    { id: 2, name: 'Dragon 2', reallyThirsty: false },
-    { id: 3, name: 'Dragon 3', reallyThirsty: true },
-    { id: 4, name: 'Dragon 4', reallyThirsty: false }
+    { id: 1, name: 'Dragon 1', reallyThirsty: true, preferredDrink: 'water' },
+    { id: 2, name: 'Dragon 2', reallyThirsty: false, preferredDrink: 'fuel' },
+    { id: 3, name: 'Dragon 3', reallyThirsty: true, preferredDrink: 'water' },
+    { id: 4, name: 'Dragon 4', reallyThirsty: false, preferredDrink: 'fuel' }
   ];
 
 
