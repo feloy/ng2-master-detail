@@ -16,7 +16,7 @@ import { ComponentDeactivable } from '../../can-deactivate-guard.service';
 })
 export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
 
-  @ViewChild(MdInput) focus: MdInput;
+  @ViewChild(MdInput) getfocus: MdInput;
 
   details: Observable<Dragon>;
   id: number = null;
@@ -24,6 +24,8 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
 
   form: FormGroup;
   nameCtrl: FormControl;
+  reallyThirstyCtrl: FormControl;
+  pleaseSave: boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
     public router: Router, private service: DragonsService) { }
@@ -31,18 +33,31 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
   ngOnInit() {
     this.route.data.pluck<Dragon>('details')
       .subscribe(d => {
+        this.pleaseSave = false;
         this.id = d ? d.id : null;
-        this.createForm(d);
-        this.focus.focus();
+        if (this.form) {
+          this.updateForm(d);
+        } else {
+          this.createForm(d);
+        }
+        this.getfocus.focus();
       });
   }
 
   private createForm(data: Dragon) {
     this.initialdata = data;
     this.nameCtrl = new FormControl(data ? data.name : '', Validators.required);
+    this.reallyThirstyCtrl = new FormControl(data ? data.reallyThirsty : null, Validators.required);
     this.form = this.fb.group({
-      name: this.nameCtrl
+      name: this.nameCtrl,
+      reallyThirsty: this.reallyThirstyCtrl
     });
+  }
+
+  private updateForm(data: Dragon) {
+    this.initialdata = data;
+    this.nameCtrl.setValue(data ? data.name : '');
+    this.reallyThirstyCtrl.setValue(data ? data.reallyThirsty : null, Validators.required);
   }
 
   doDelete() {
@@ -59,11 +74,8 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
   }
 
   doReset() {
-    if (this.initialdata) {
-      this.form.reset(this.initialdata);
-    } else {
-      this.form.reset();
-    }
+    this.createForm(this.initialdata);
+    this.pleaseSave = false;
   }
 
   onSubmit() {
@@ -77,6 +89,8 @@ export class DragonsDetailsComponent implements OnInit, ComponentDeactivable {
   }
 
   canDeactivate() {
-    return this.form.pristine;
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
 }

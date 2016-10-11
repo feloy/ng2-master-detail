@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 export interface Dragon {
   id: number;
   name: string;
+  reallyThirsty: boolean;
 }
 
 @Injectable()
 export class DragonsService {
 
   private dragons: Dragon[] = [
-    { id: 1, name: 'Dragon 1' },
-    { id: 2, name: 'Dragon 2' },
-    { id: 3, name: 'Dragon 3' },
-    { id: 4, name: 'Dragon 4' }
+    { id: 1, name: 'Dragon 1', reallyThirsty: true },
+    { id: 2, name: 'Dragon 2', reallyThirsty: false },
+    { id: 3, name: 'Dragon 3', reallyThirsty: true },
+    { id: 4, name: 'Dragon 4', reallyThirsty: false }
   ];
 
 

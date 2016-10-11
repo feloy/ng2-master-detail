@@ -3,7 +3,8 @@
   <md-card-title *ngIf="!id">New Dragon</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-      <md-input #focus placeholder="name" formControlName="name"></md-input>
+      <md-input #getfocus placeholder="name" formControlName="name"></md-input>
+      <md-checkbox style="display: block" [indeterminate]="reallyThirstyCtrl.value == null" formControlName="reallyThirsty">Really Thirsty</md-checkbox>
     </md-card-content>
     <md-card-actions align="end">
       <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
@@ -11,5 +12,6 @@
       <button md-button type="button" (click)="doCancel()">Cancel</button>
       <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine">Save</button>
     </md-card-actions>
+    <div *ngIf="pleaseSave">Please save or cancel</div>
   </form>
 </md-card>
