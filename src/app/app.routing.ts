@@ -7,4 +7,4 @@ const appRoutes: Routes = [
   { path: 'dragons', loadChildren: 'app/dragons/dragons.module#DragonsModule' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {useHash: true});
